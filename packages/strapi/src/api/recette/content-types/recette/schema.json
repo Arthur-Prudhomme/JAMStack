@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recettes",
+  "info": {
+    "singularName": "recette",
+    "pluralName": "recettes",
+    "displayName": "Recette"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "etiquettes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::etiquette.etiquette",
+      "mappedBy": "recettes"
+    }
+  }
+}
