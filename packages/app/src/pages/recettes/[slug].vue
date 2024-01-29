@@ -15,10 +15,15 @@ console.log(recette);
 </script>
 
 <template>
-	<NuxtImg :src="recette.data.image.url"></NuxtImg>
-	<pre>
+	<div v-if="recette">
+		<NuxtLink to="/"> retour </NuxtLink>
+		<div>
+			<NuxtImg :src="recette?.data.image.url"></NuxtImg>
+			<pre>
         {{ recette }}
     </pre
-	>
+			>
+		</div>
+	</div>
 	<!-- <NuxtImg :src="recette.image.url"></NuxtImg> -->
 </template>

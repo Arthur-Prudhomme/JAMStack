@@ -18,9 +18,9 @@ console.log(recettes);
 			<h1>Recettes</h1>
 		</div>
 
-		<div>
+		<div v-if="recettes">
 			<ul>
-				<li v-for="recette in recettes.data" :key="recette.id">
+				<li v-for="recette in recettes?.data" :key="recette.id">
 					<NuxtLink :to="`/recettes/${recette.slug}`">{{
 						recette.title
 					}}</NuxtLink>
