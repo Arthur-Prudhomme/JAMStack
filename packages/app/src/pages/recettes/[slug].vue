@@ -15,6 +15,7 @@ console.log(recette);
 </script>
 
 <template>
+	<NuxtImg :src="recette.data.image.url"></NuxtImg>
 	<pre>
         {{ recette }}
     </pre

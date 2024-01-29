@@ -362,6 +362,80 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
 	};
 }
 
+export interface ApiEtiquetteEtiquette extends Schema.CollectionType {
+	collectionName: "etiquettes";
+	info: {
+		singularName: "etiquette";
+		pluralName: "etiquettes";
+		displayName: "Etiquette";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		tags: Attribute.String;
+		recettes: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"manyToMany",
+			"api::recette.recette"
+		>;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
+export interface ApiRecetteRecette extends Schema.CollectionType {
+	collectionName: "recettes";
+	info: {
+		singularName: "recette";
+		pluralName: "recettes";
+		displayName: "Recette";
+		description: "";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		title: Attribute.String;
+		slug: Attribute.UID<"api::recette.recette", "title"> & Attribute.Required;
+		description: Attribute.RichText;
+		etiquettes: Attribute.Relation<
+			"api::recette.recette",
+			"manyToMany",
+			"api::etiquette.etiquette"
+		>;
+		image: Attribute.Media;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::recette.recette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::recette.recette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
 	collectionName: "files";
 	info: {
@@ -768,80 +842,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
 	};
 }
 
-export interface ApiEtiquetteEtiquette extends Schema.CollectionType {
-	collectionName: "etiquettes";
-	info: {
-		singularName: "etiquette";
-		pluralName: "etiquettes";
-		displayName: "Etiquette";
-	};
-	options: {
-		draftAndPublish: true;
-	};
-	attributes: {
-		tags: Attribute.String;
-		recettes: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"manyToMany",
-			"api::recette.recette"
-		>;
-		createdAt: Attribute.DateTime;
-		updatedAt: Attribute.DateTime;
-		publishedAt: Attribute.DateTime;
-		createdBy: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-		updatedBy: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-	};
-}
-
-export interface ApiRecetteRecette extends Schema.CollectionType {
-	collectionName: "recettes";
-	info: {
-		singularName: "recette";
-		pluralName: "recettes";
-		displayName: "Recette";
-		description: "";
-	};
-	options: {
-		draftAndPublish: true;
-	};
-	attributes: {
-		title: Attribute.String;
-		slug: Attribute.UID<"api::recette.recette", "title"> & Attribute.Required;
-		description: Attribute.RichText;
-		etiquettes: Attribute.Relation<
-			"api::recette.recette",
-			"manyToMany",
-			"api::etiquette.etiquette"
-		>;
-		image: Attribute.Media;
-		createdAt: Attribute.DateTime;
-		updatedAt: Attribute.DateTime;
-		publishedAt: Attribute.DateTime;
-		createdBy: Attribute.Relation<
-			"api::recette.recette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-		updatedBy: Attribute.Relation<
-			"api::recette.recette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-	};
-}
-
 declare module "@strapi/types" {
 	export module Shared {
 		export interface ContentTypes {
@@ -852,6 +852,8 @@ declare module "@strapi/types" {
 			"admin::api-token-permission": AdminApiTokenPermission;
 			"admin::transfer-token": AdminTransferToken;
 			"admin::transfer-token-permission": AdminTransferTokenPermission;
+			"api::etiquette.etiquette": ApiEtiquetteEtiquette;
+			"api::recette.recette": ApiRecetteRecette;
 			"plugin::upload.file": PluginUploadFile;
 			"plugin::upload.folder": PluginUploadFolder;
 			"plugin::content-releases.release": PluginContentReleasesRelease;
@@ -860,8 +862,6 @@ declare module "@strapi/types" {
 			"plugin::users-permissions.permission": PluginUsersPermissionsPermission;
 			"plugin::users-permissions.role": PluginUsersPermissionsRole;
 			"plugin::users-permissions.user": PluginUsersPermissionsUser;
-			"api::etiquette.etiquette": ApiEtiquetteEtiquette;
-			"api::recette.recette": ApiRecetteRecette;
 		}
 	}
 }
