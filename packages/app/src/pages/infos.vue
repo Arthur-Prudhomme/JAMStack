@@ -6,8 +6,8 @@ const {
 	data: recettes,
 	pending,
 	error,
-} = useAsyncData(`recettes/${route.params.id}`, () =>
-	find("recettes", {
+} = useAsyncData("recettes", () =>
+	find(`recettes/${route.query.id}`, {
 		populate: "*",
 	})
 );
