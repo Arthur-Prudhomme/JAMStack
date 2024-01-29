@@ -15,17 +15,13 @@ console.log(recettes);
 <template>
 	<div class="container">
 		<div class="flex flex-col items-center gap-y-4">
-			<h1>ça va ça avance</h1>
-			<div class="flex gap-x-4">
-				<NuxtLink to="/start"> Documentation </NuxtLink>
-				<NuxtLink to="/exemple-recherche"> Exemple de recherche </NuxtLink>
-			</div>
+			<h1>Recettes</h1>
 		</div>
 
 		<div>
 			<ul>
 				<li v-for="recette in recettes.data" :key="recette.id">
-					<NuxtLink :to="{ name: 'infos', query: { id: recette.id } }">{{
+					<NuxtLink :to="`/recettes/${recette.slug}`">{{
 						recette.title
 					}}</NuxtLink>
 				</li>

@@ -809,6 +809,7 @@ export interface ApiRecetteRecette extends Schema.CollectionType {
 		singularName: "recette";
 		pluralName: "recettes";
 		displayName: "Recette";
+		description: "";
 	};
 	options: {
 		draftAndPublish: true;
@@ -822,6 +823,7 @@ export interface ApiRecetteRecette extends Schema.CollectionType {
 			"manyToMany",
 			"api::etiquette.etiquette"
 		>;
+		image: Attribute.Media;
 		createdAt: Attribute.DateTime;
 		updatedAt: Attribute.DateTime;
 		publishedAt: Attribute.DateTime;
