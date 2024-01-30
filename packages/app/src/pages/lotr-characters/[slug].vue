@@ -3,23 +3,23 @@ const { findOne } = useStrapi();
 const route = useRoute();
 
 const {
-	data: recette,
+	data: lotrCharacter,
 	pending,
 	error,
-} = useAsyncData("recette", () =>
-	findOne(`recettes/${route.params.slug}`, {
+} = useAsyncData("lotr-character", () =>
+	findOne(`lotr-characters/${route.params.slug}`, {
 		populate: "*",
 	})
 );
 </script>
 
 <template>
-	<div v-if="recette">
+	<div v-if="lotrCharacter">
 		<NuxtLink to="/"> retour </NuxtLink>
 		<div>
-			<NuxtImg :src="recette?.data.image.url"></NuxtImg>
+			<NuxtImg :src="lotrCharacter?.data.portrait.url"></NuxtImg>
 			<pre>
-        {{ recette }}
+        {{ lotrCharacter }}
     </pre
 			>
 		</div>

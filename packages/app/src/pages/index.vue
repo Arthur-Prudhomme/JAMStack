@@ -1,28 +1,30 @@
 <script lang="ts" setup>
 const { find } = useStrapi();
 const {
-	data: recettes,
+	data: lotrCharacters,
 	pending,
 	error,
-} = useAsyncData("recettes", () =>
-	find("recettes", {
+} = useAsyncData("lotr-characters", () =>
+	find("lotr-characters", {
 		populate: "*",
 	})
 );
-console.log(recettes);
 </script>
 
 <template>
 	<div class="container">
 		<div class="flex flex-col items-center gap-y-4">
-			<h1>Recettes</h1>
+			<h1>LOTR</h1>
 		</div>
 
-		<div v-if="recettes">
+		<div v-if="lotrCharacters">
 			<ul>
-				<li v-for="recette in recettes?.data" :key="recette.id">
-					<NuxtLink :to="`/recettes/${recette.slug}`">{{
-						recette.title
+				<li
+					v-for="lotrCharacter in lotrCharacters?.data"
+					:key="lotrCharacter.id"
+				>
+					<NuxtLink :to="`/lotr-characters/${lotrCharacter.slug}`">{{
+						lotrCharacter.name
 					}}</NuxtLink>
 				</li>
 			</ul>

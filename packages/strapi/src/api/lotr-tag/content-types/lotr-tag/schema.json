@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lotr_tags",
+  "info": {
+    "singularName": "lotr-tag",
+    "pluralName": "lotr-tags",
+    "displayName": "lotr-tags",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "string",
+      "required": true
+    },
+    "lotr_characters": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lotr-character.lotr-character",
+      "mappedBy": "lotr_tags"
+    }
+  }
+}

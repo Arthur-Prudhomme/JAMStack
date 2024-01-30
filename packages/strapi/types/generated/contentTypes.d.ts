@@ -362,80 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
 	};
 }
 
-export interface ApiEtiquetteEtiquette extends Schema.CollectionType {
-	collectionName: "etiquettes";
-	info: {
-		singularName: "etiquette";
-		pluralName: "etiquettes";
-		displayName: "Etiquette";
-	};
-	options: {
-		draftAndPublish: true;
-	};
-	attributes: {
-		tags: Attribute.String;
-		recettes: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"manyToMany",
-			"api::recette.recette"
-		>;
-		createdAt: Attribute.DateTime;
-		updatedAt: Attribute.DateTime;
-		publishedAt: Attribute.DateTime;
-		createdBy: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-		updatedBy: Attribute.Relation<
-			"api::etiquette.etiquette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-	};
-}
-
-export interface ApiRecetteRecette extends Schema.CollectionType {
-	collectionName: "recettes";
-	info: {
-		singularName: "recette";
-		pluralName: "recettes";
-		displayName: "Recette";
-		description: "";
-	};
-	options: {
-		draftAndPublish: true;
-	};
-	attributes: {
-		title: Attribute.String;
-		slug: Attribute.UID<"api::recette.recette", "title"> & Attribute.Required;
-		description: Attribute.RichText;
-		etiquettes: Attribute.Relation<
-			"api::recette.recette",
-			"manyToMany",
-			"api::etiquette.etiquette"
-		>;
-		image: Attribute.Media;
-		createdAt: Attribute.DateTime;
-		updatedAt: Attribute.DateTime;
-		publishedAt: Attribute.DateTime;
-		createdBy: Attribute.Relation<
-			"api::recette.recette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-		updatedBy: Attribute.Relation<
-			"api::recette.recette",
-			"oneToOne",
-			"admin::user"
-		> &
-			Attribute.Private;
-	};
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
 	collectionName: "files";
 	info: {
@@ -842,6 +768,156 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
 	};
 }
 
+export interface ApiEtiquetteEtiquette extends Schema.CollectionType {
+	collectionName: "etiquettes";
+	info: {
+		singularName: "etiquette";
+		pluralName: "etiquettes";
+		displayName: "Etiquette";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		tags: Attribute.String;
+		recettes: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"manyToMany",
+			"api::recette.recette"
+		>;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::etiquette.etiquette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
+export interface ApiLotrCharacterLotrCharacter extends Schema.CollectionType {
+	collectionName: "lotr_characters";
+	info: {
+		singularName: "lotr-character";
+		pluralName: "lotr-characters";
+		displayName: "lotr-characters";
+		description: "";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		name: Attribute.String & Attribute.Required;
+		species: Attribute.String & Attribute.Required;
+		age: Attribute.Integer;
+		portrait: Attribute.Media & Attribute.Required;
+		lotr_tags: Attribute.Relation<
+			"api::lotr-character.lotr-character",
+			"manyToMany",
+			"api::lotr-tag.lotr-tag"
+		>;
+		slug: Attribute.UID<"api::lotr-character.lotr-character", "name">;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::lotr-character.lotr-character",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::lotr-character.lotr-character",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
+export interface ApiLotrTagLotrTag extends Schema.CollectionType {
+	collectionName: "lotr_tags";
+	info: {
+		singularName: "lotr-tag";
+		pluralName: "lotr-tags";
+		displayName: "lotr-tags";
+		description: "";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		tag: Attribute.String & Attribute.Required;
+		lotr_characters: Attribute.Relation<
+			"api::lotr-tag.lotr-tag",
+			"manyToMany",
+			"api::lotr-character.lotr-character"
+		>;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::lotr-tag.lotr-tag",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::lotr-tag.lotr-tag",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
+export interface ApiRecetteRecette extends Schema.CollectionType {
+	collectionName: "recettes";
+	info: {
+		singularName: "recette";
+		pluralName: "recettes";
+		displayName: "Recette";
+		description: "";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	attributes: {
+		title: Attribute.String;
+		slug: Attribute.UID<"api::recette.recette", "title"> & Attribute.Required;
+		description: Attribute.RichText;
+		etiquettes: Attribute.Relation<
+			"api::recette.recette",
+			"manyToMany",
+			"api::etiquette.etiquette"
+		>;
+		image: Attribute.Media;
+		createdAt: Attribute.DateTime;
+		updatedAt: Attribute.DateTime;
+		publishedAt: Attribute.DateTime;
+		createdBy: Attribute.Relation<
+			"api::recette.recette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+		updatedBy: Attribute.Relation<
+			"api::recette.recette",
+			"oneToOne",
+			"admin::user"
+		> &
+			Attribute.Private;
+	};
+}
+
 declare module "@strapi/types" {
 	export module Shared {
 		export interface ContentTypes {
@@ -852,8 +928,6 @@ declare module "@strapi/types" {
 			"admin::api-token-permission": AdminApiTokenPermission;
 			"admin::transfer-token": AdminTransferToken;
 			"admin::transfer-token-permission": AdminTransferTokenPermission;
-			"api::etiquette.etiquette": ApiEtiquetteEtiquette;
-			"api::recette.recette": ApiRecetteRecette;
 			"plugin::upload.file": PluginUploadFile;
 			"plugin::upload.folder": PluginUploadFolder;
 			"plugin::content-releases.release": PluginContentReleasesRelease;
@@ -862,6 +936,10 @@ declare module "@strapi/types" {
 			"plugin::users-permissions.permission": PluginUsersPermissionsPermission;
 			"plugin::users-permissions.role": PluginUsersPermissionsRole;
 			"plugin::users-permissions.user": PluginUsersPermissionsUser;
+			"api::etiquette.etiquette": ApiEtiquetteEtiquette;
+			"api::lotr-character.lotr-character": ApiLotrCharacterLotrCharacter;
+			"api::lotr-tag.lotr-tag": ApiLotrTagLotrTag;
+			"api::recette.recette": ApiRecetteRecette;
 		}
 	}
 }

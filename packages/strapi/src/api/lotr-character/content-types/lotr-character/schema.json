@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lotr_characters",
+  "info": {
+    "singularName": "lotr-character",
+    "pluralName": "lotr-characters",
+    "displayName": "lotr-characters",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "species": {
+      "type": "string",
+      "required": true
+    },
+    "age": {
+      "type": "integer"
+    },
+    "portrait": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "lotr_tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lotr-tag.lotr-tag",
+      "inversedBy": "lotr_characters"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    }
+  }
+}
