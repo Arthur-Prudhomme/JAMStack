@@ -6,7 +6,7 @@ const {
 	data: lotrCharacter,
 	pending,
 	error,
-} = useAsyncData("lotr-character", () =>
+} = useAsyncData("lotr-character" + route.params.slug, () =>
 	findOne(`lotr-characters/${route.params.slug}`, {
 		populate: "*",
 	})

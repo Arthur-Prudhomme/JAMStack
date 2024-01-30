@@ -1,26 +1,40 @@
-import Fuse from 'fuse.js'
-import { recipesMock } from '~/mocks/recipes.mock'
+import Fuse from "fuse.js";
+import { recipesMock } from "~/mocks/recipes.mock";
 
-export const useSearchStore = defineStore('search', () => {
-  const search = ref('')
-  // TODO: Replace any with your Recipe type and change elements
-  const elements = reactive<Array<any>>(recipesMock)
-  const keys = ['title', 'ingredients', 'tags']
+export const useSearchStore = defineStore("search", () => {
+	const search = ref("");
 
-  const setElements = (newElements: any) => {
-    elements.push(...newElements)
-  }
+	const { find } = useStrapi();
+	const {
+		data: lotrCharacters,
+		pending,
+		error,
+	} = useAsyncData("lotr-characters", () =>
+		find("lotr-characters", {
+			populate: "*",
+		})
+	);
 
-  const fuse = computed(() => new Fuse(Array.from(elements), {
-    keys,
-    threshold: 0.2,
-  }))
+	// TODO: Replace any with your Recipe type and change elements
+	const elements = reactive<Array<any>>(lotrCharacters.value?.data ?? []);
+	const keys = ["name", "species", "age"];
 
-  const results = computed(() => {
-    if (!search.value)
-      return Array.from(elements)
-    return [...fuse.value.search(search.value).map(r => r.item)]
-  })
+	// const setElements = (newElements: any) => {
+	// 	elements.push(...newElements);
+	// };
 
-  return { search, results, setElements }
-})
+	const fuse = computed(
+		() =>
+			new Fuse(Array.from(elements), {
+				keys,
+				threshold: 0.2,
+			})
+	);
+
+	const results = computed(() => {
+		if (!search.value) return Array.from(elements);
+		return [...fuse.value.search(search.value).map((r) => r.item)];
+	});
+
+	return { search, results };
+});
