@@ -825,6 +825,8 @@ export interface ApiLotrCharacterLotrCharacter extends Schema.CollectionType {
 			"api::lotr-tag.lotr-tag"
 		>;
 		slug: Attribute.UID<"api::lotr-character.lotr-character", "name">;
+		onceSaid: Attribute.Text;
+		didNotSaid: Attribute.Text;
 		createdAt: Attribute.DateTime;
 		updatedAt: Attribute.DateTime;
 		publishedAt: Attribute.DateTime;

@@ -1,39 +1,32 @@
 <script lang="ts" setup>
 const search = useSearchStore();
-const { find } = useStrapi();
-const {
-	data: lotrCharacters,
-	pending,
-	error,
-} = useAsyncData("lotr-characters", () =>
-	find("lotr-characters", {
-		populate: "*",
-	})
-);
 </script>
 
 <template>
 	<div class="container">
-		<div class="my-4">
-			<h1>LOTR</h1>
-			<input
-				v-model="search.search"
-				placeholder="Search Character"
-				type="text"
-			/>
-			<div v-if="search.results" class="flex gap-[10px]">
+		<div>
+			<div class="flex flex-col items-center">
+				<h1>LOTR Slightly Incorrect Lore</h1>
+				<input
+					class="w-[60%] text-center mb-[20px]"
+					v-model="search.search"
+					placeholder="Search Character"
+					type="text"
+				/>
+			</div>
+			<div v-if="search.results" class="grid grid-cols-4 gap-5 mx-[5%]">
 				<div
-					class="flex justify-between"
+					class="flex justify-between w-[100%] h-[100%]"
 					v-for="lotrCharacter in search.results"
 					:key="lotrCharacter.id"
 				>
-					<div class="border-solid border-2 border-black max-w-[350px]">
+					<div class="border-solid border-2 border-black w-[100%] h-[100%]">
 						<NuxtLink
 							class="no-underline text-black"
 							:to="`/lotr-characters/${lotrCharacter.slug}`"
 						>
 							<NuxtImg
-								class="w-[100%] max-w-[100%]"
+								class="w-[100%] max-w-[100%] h-[70%] object-cover"
 								:src="lotrCharacter?.portrait.url"
 							></NuxtImg>
 							<h2 class="m-0px">{{ lotrCharacter.name }}</h2>
