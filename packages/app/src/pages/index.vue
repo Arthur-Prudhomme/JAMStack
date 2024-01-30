@@ -18,18 +18,31 @@ const {
 			<h1>LOTR</h1>
 			<input
 				v-model="search.search"
-				placeholder="Chercher une recette"
+				placeholder="Search Character"
 				type="text"
 			/>
-			<div v-if="search.results">
-				<div v-for="lotrCharacter in search.results" :key="lotrCharacter.id">
-					<NuxtLink :to="`/lotr-characters/${lotrCharacter.slug}`">
-						<div>
-							<h2>{{ lotrCharacter.name }}</h2>
-							<p>{{ lotrCharacter.age }}</p>
-							<p>{{ lotrCharacter.species }}</p>
-						</div>
-					</NuxtLink>
+			<div v-if="search.results" class="flex gap-[10px]">
+				<div
+					class="flex justify-between"
+					v-for="lotrCharacter in search.results"
+					:key="lotrCharacter.id"
+				>
+					<div class="border-solid border-2 border-black max-w-[350px]">
+						<NuxtLink
+							class="no-underline text-black"
+							:to="`/lotr-characters/${lotrCharacter.slug}`"
+						>
+							<NuxtImg
+								class="w-[100%] max-w-[100%]"
+								:src="lotrCharacter?.portrait.url"
+							></NuxtImg>
+							<h2 class="m-0px">{{ lotrCharacter.name }}</h2>
+							<div class="flex">
+								<p class="mr-5px">Age : {{ lotrCharacter.age }}</p>
+								<p>Species : {{ lotrCharacter.species }}</p>
+							</div>
+						</NuxtLink>
+					</div>
 				</div>
 			</div>
 		</div>
