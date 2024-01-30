@@ -20,13 +20,15 @@ const search = useSearchStore();
 					v-for="lotrCharacter in search.results"
 					:key="lotrCharacter.id"
 				>
-					<div class="border-solid border-2 border-black w-[100%] h-[100%]">
+					<div
+						class="border-solid border-2 border-black w-[100%] h-[100%] rounded-2xl"
+					>
 						<NuxtLink
 							class="no-underline text-black"
 							:to="`/lotr-characters/${lotrCharacter.slug}`"
 						>
 							<NuxtImg
-								class="w-[100%] max-w-[100%] h-[70%] object-cover"
+								class="w-[100%] max-w-[100%] h-[70%] object-cover rounded-ss-2xl rounded-se-2xl"
 								:src="lotrCharacter?.portrait.url"
 							></NuxtImg>
 							<h2 class="m-0px">{{ lotrCharacter.name }}</h2>
