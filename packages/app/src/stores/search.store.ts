@@ -18,6 +18,7 @@ export const useSearchStore = defineStore("search", () => {
 	// TODO: Replace any with your Recipe type and change elements
 	const elements = reactive<Array<any>>(lotrCharacters.value?.data ?? []);
 	const keys = ["name", "species", "age"];
+	// const queryTags = ref<string[]>([])
 
 	// const setElements = (newElements: any) => {
 	// 	elements.push(...newElements);
