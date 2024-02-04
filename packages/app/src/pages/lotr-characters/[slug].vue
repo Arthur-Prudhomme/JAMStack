@@ -11,12 +11,12 @@ const {
 		populate: "*",
 	})
 );
-console.log(lotrCharacter);
+console.log(lotrCharacter.data);
 </script>
 
 <template>
+	<NuxtLink to="/"> retour </NuxtLink>
 	<div v-if="lotrCharacter">
-		<NuxtLink to="/"> retour </NuxtLink>
 		<div
 			class="flex flex-row border-solid border-2 border-white w-[80%] h-[100%] mx-auto rounded-2xl"
 		>
