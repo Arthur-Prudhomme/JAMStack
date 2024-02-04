@@ -37,5 +37,5 @@ export const useSearchStore = defineStore("search", () => {
 		return [...fuse.value.search(search.value).map((r) => r.item)];
 	});
 
-	return { search, results };
+	return { search, results, pending };
 });

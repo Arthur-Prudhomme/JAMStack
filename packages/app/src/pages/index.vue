@@ -4,13 +4,13 @@ const search = useSearchStore();
 
 <template>
 	<body class="container bg-black text-white">
-		<div v-if="search.results" class="w-[90%] mx-auto">
+		<div v-if="!search.pending" class="w-[90%] mx-auto">
 			<div class="flex flex-col items-center">
 				<h1>LOTR Slightly Incorrect Lore</h1>
 				<input
 					class="w-[99%] text-center mb-[20px] rounded-2xl bg-black text-white"
 					v-model="search.search"
-					placeholder="Search Character"
+					placeholder="Search Character from Name, Age or Species"
 					type="text"
 				/>
 			</div>
@@ -31,16 +31,21 @@ const search = useSearchStore();
 								class="w-[100%] max-w-[100%] h-[70%] object-cover rounded-ss-2xl rounded-se-2xl"
 								:src="lotrCharacter?.portrait.url"
 							></NuxtImg>
-							<h2 class="m-0px">{{ lotrCharacter.name }}</h2>
-							<div class="flex">
-								<p>Age : {{ lotrCharacter.age }}</p>
-								<p>&nbsp;|&nbsp;</p>
-								<p>Species : {{ lotrCharacter.species }}</p>
+							<div class="mx-[20px]">
+								<h2 class="m-0px">{{ lotrCharacter.name }}</h2>
+								<div class="flex">
+									<p>Age : {{ lotrCharacter.age }}</p>
+									<p>&nbsp;|&nbsp;</p>
+									<p>Species : {{ lotrCharacter.species }}</p>
+								</div>
 							</div>
 						</NuxtLink>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- <div v-if="search.pending" class="w-[20%] mx-auto">
+			<img class="w-[100%]" src="../assets/css/one_ring.gif" />
+		</div> -->
 	</body>
 </template>

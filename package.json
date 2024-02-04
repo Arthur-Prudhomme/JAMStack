@@ -1,16 +1,16 @@
 {
-  "name": "headless",
-  "version": "1.1.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "pnpm -r build",
-    "packages": "pnpm --filter",
-    "app": "pnpm packages @headless/app",
-    "strapi": "pnpm packages @headless/strapi",
-    "dev": "pnpm -r dev"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "headless",
+	"version": "1.1.0",
+	"description": "",
+	"keywords": [],
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"app": "pnpm packages @headless/app",
+		"build": "pnpm -r build",
+		"dev": "pnpm -r dev",
+		"packages": "pnpm --filter",
+		"strapi": "pnpm packages @headless/strapi"
+	}
 }
